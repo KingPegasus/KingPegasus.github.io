@@ -2,6 +2,8 @@
 title: "ML Image Processing"
 summary: "ML-powered image processing application for automated visual analysis and production use."
 tags: ["Python", "FastAPI", "Machine Learning"]
+url: "https://rareos.com"
+image: "/images/projects/rareos.png"
 featured: true
 order: 3
 ---

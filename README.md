@@ -23,7 +23,6 @@ Push to `main` branch. GitHub Actions deploys automatically to Pages.
 ## Content
 
 - Projects: `src/content/projects/`
-- Blog: `src/content/blog/`
 - Data: `src/data/`
 - Images: `public/images/`
 - Videos: `public/videos/`

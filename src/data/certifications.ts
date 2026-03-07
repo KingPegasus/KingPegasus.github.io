@@ -9,6 +9,6 @@ export const certifications = [
   },
   {
     group: "Leadership",
-    items: ["Building High-Performance Teams", "Agile Project Leadership", "Six Sigma Foundations"]
+    items: ["Building High-Performance Teams", "Agile Project Leadership"]
   }
 ];
