@@ -1,0 +1,65 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header id="site-nav">
+  <div class="container nav-inner">
+    <a href="#home" class="nav-brand">Raza Saleemi</a>
+    <nav class="nav-links">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
+
+<style>
+  #site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(16px);
+    background: rgba(10, 10, 12, 0.8);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  :global(body.light) #site-nav {
+    background: rgba(250, 250, 250, 0.85);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .nav-links a {
+    transition: color 0.2s;
+  }
+  .nav-links a:hover {
+    color: var(--text);
+  }
+  @media (max-width: 640px) {
+    .nav-links { gap: 0.8rem; font-size: 0.82rem; }
+  }
+</style>

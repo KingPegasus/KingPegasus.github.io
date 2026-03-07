@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).filter((post) => !post.data.draft);
+---
+
+<BaseLayout title="Blog | Muhammad Raza Khalid Saleemi" description="Engineering notes on backend architecture, ML systems, and leadership.">
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Blog</p>
+      <h1 class="section-title">Engineering Notes</h1>
+      <div style="display:grid;gap:0.8rem;max-width:720px;">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}/`} class="glass" style="display:block;padding:1.3rem 1.4rem;text-decoration:none;">
+            <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem;">{post.data.title}</h2>
+            <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.2rem;">{post.data.description}</p>
+            <small style="font-size:0.8rem;color:var(--accent);">{post.data.pubDate.toDateString()}</small>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

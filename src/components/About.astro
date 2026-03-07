@@ -1,0 +1,69 @@
+---
+import { education } from "../data/education";
+---
+
+<section id="about" class="section">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Building software that ships and teams that scale.</h2>
+    </div>
+
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>I'm a Principal Engineer with 10+ years of experience turning complex challenges into shipped software products &mdash; from cloud backends to ML-powered applications to IoT product lines.</p>
+        <p>Currently at Baraqi, I architect backend systems with FastAPI, Django, GraphQL, and AWS. Previously, I managed engineering teams at MTronic, led IoT software development at MRS Technologies, and delivered an industrial energy management platform at Technology Spirits.</p>
+        <p>My 6-year public-sector tenure sharpened my expertise in algorithm design, high-performance computing software, and data-driven systems.</p>
+      </div>
+
+      <div class="edu-cards">
+        {education.map((item) => (
+          <div class="glass edu-card">
+            <p class="edu-degree">{item.degree}</p>
+            <p class="edu-meta">{item.institute}</p>
+            <p class="edu-detail">{item.gpa} &middot; {item.years}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 1.02rem;
+  }
+  .edu-cards {
+    display: grid;
+    gap: 0.8rem;
+  }
+  .edu-card {
+    padding: 1.2rem;
+  }
+  .edu-degree {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  .edu-meta {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+  }
+  .edu-detail {
+    font-size: 0.82rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+</style>

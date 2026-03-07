@@ -1,0 +1,48 @@
+---
+import { socials } from "../data/socials";
+---
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-wrap fade-in">
+      <p class="section-label">Contact</p>
+      <h2 class="contact-heading">Let's work together</h2>
+      <p class="contact-sub">Open to principal engineering and leadership roles where backend architecture, ML, and team impact matter. The fastest way to reach me is LinkedIn.</p>
+
+      <div class="contact-links">
+        <a href={socials.linkedin} target="_blank" rel="noreferrer" class="btn btn-primary">
+          Connect on LinkedIn &rarr;
+        </a>
+        <a href={socials.github} target="_blank" rel="noreferrer" class="btn btn-outline">
+          GitHub Profile
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-wrap {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .contact-heading {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.8rem;
+  }
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+  }
+  .contact-links {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

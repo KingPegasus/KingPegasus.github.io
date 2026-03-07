@@ -1,0 +1,76 @@
+---
+import { skills } from "../data/skills";
+---
+
+<section id="skills" class="section">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">Skills</p>
+      <h2 class="section-title">Technologies I work with</h2>
+    </div>
+
+    <div class="skills-group fade-in">
+      <h3 class="skills-tier-label">Core Expertise</h3>
+      <div class="skills-grid core">
+        {skills.core.map((s) => (
+          <div class="glass skill-card core-card">
+            <span class="skill-name">{s}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="skills-group fade-in">
+      <h3 class="skills-tier-label">Strong Proficiency</h3>
+      <div class="skills-row">
+        {skills.strong.map((s) => <span class="chip">{s}</span>)}
+      </div>
+    </div>
+
+    <div class="skills-group fade-in">
+      <h3 class="skills-tier-label">Leadership & Process</h3>
+      <div class="skills-row">
+        {skills.leadership.map((s) => <span class="chip">{s}</span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-group {
+    margin-bottom: 2rem;
+  }
+  .skills-tier-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.8rem;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.6rem;
+  }
+  .skill-card {
+    padding: 1rem;
+    text-align: center;
+    border-radius: 12px;
+  }
+  .core-card {
+    border-left: 2px solid var(--accent);
+  }
+  .skill-name {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .skills-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 640px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

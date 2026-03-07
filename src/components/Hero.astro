@@ -1,0 +1,117 @@
+---
+import { socials } from "../data/socials";
+---
+
+<section id="home" class="hero-bg" style="padding:7rem 0 5.5rem;">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="hero-location">Islamabad, Pakistan</p>
+        <h1 class="hero-name">Muhammad Raza Khalid<br />Saleemi</h1>
+        <p class="hero-role">Principal Engineer <span class="hero-at">@ Baraqi</span></p>
+        <p class="hero-tagline">I build scalable backends, ML projects, and the teams behind them.</p>
+        <div class="hero-chips">
+          <span class="chip">10+ years experience</span>
+          <span class="chip">Backend + ML</span>
+          <span class="chip">Engineering Leadership</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">See My Work &darr;</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+        <div class="hero-socials">
+          <a href={socials.github} target="_blank" rel="noreferrer" class="accent-link">GitHub &rarr;</a>
+          <a href={socials.linkedin} target="_blank" rel="noreferrer" class="accent-link">LinkedIn &rarr;</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-ring">
+          <img src="/images/hero/headshot.jpg" alt="Muhammad Raza Khalid Saleemi" class="hero-photo" loading="eager" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .hero-location {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-name {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-role {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .hero-at {
+    color: var(--accent);
+  }
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 52ch;
+    line-height: 1.7;
+  }
+  .hero-chips {
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-socials {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  .hero-photo-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .hero-photo-ring {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--accent), #9333ea, #06b6d4);
+    box-shadow: 0 0 60px var(--accent-glow);
+  }
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-photo-wrap { order: -1; }
+    .hero-photo-ring { width: 200px; height: 200px; }
+    .hero-chips, .hero-actions, .hero-socials { justify-content: center; }
+    .hero-tagline { margin: 0 auto; }
+  }
+</style>

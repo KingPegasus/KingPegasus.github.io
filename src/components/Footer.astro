@@ -1,0 +1,38 @@
+---
+import { socials } from "../data/socials";
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">&copy; {new Date().getFullYear()} Muhammad Raza Khalid Saleemi</p>
+    <div class="footer-links">
+      <a href={socials.github} target="_blank" rel="noreferrer">GitHub</a>
+      <a href={socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    margin-top: 1rem;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+</style>

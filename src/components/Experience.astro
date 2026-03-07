@@ -1,0 +1,114 @@
+---
+import { experience } from "../data/experience";
+---
+
+<section id="experience" class="section">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Where I've worked</h2>
+    </div>
+    <div class="timeline fade-in">
+      {experience.map((job, i) => (
+        <div class="timeline-item">
+          <div class="timeline-dot" />
+          <div class="timeline-content glass">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-company">{job.company}</h3>
+                <p class="timeline-role">{job.role}</p>
+              </div>
+              <span class="timeline-period">{job.period}</span>
+            </div>
+            <ul class="timeline-highlights">
+              {job.highlights.map((h) => <li>{h}</li>)}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -2rem;
+    top: 1.4rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    z-index: 1;
+  }
+  .timeline-item:first-child .timeline-dot {
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .timeline-content {
+    padding: 1.3rem 1.4rem;
+  }
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .timeline-company {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .timeline-role {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 0.15rem;
+  }
+  .timeline-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .timeline-highlights {
+    list-style: none;
+    padding: 0;
+  }
+  .timeline-highlights li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .timeline-highlights li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  @media (max-width: 640px) {
+    .timeline-header { flex-direction: column; }
+  }
+</style>
