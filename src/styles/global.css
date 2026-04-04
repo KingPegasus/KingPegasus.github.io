@@ -4,9 +4,7 @@
 @import "@fontsource/inter/latin-700.css";
 @import "@fontsource/jetbrains-mono/latin-400.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --accent: #3b82f6;
@@ -99,8 +97,13 @@ a:hover {
 .glass:hover {
   background: var(--surface-hover);
   border-color: var(--border-hover);
-  transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@media (hover: hover) {
+  .glass:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .chip {
@@ -205,6 +208,39 @@ body.light .hero-bg::before {
 }
 
 @media (max-width: 768px) {
-  .section { padding: 4rem 0; }
-  .container { padding: 0 1.1rem; }
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  body {
+    line-height: 1.75;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.35rem, 1.05rem + 3.2vw, 2.2rem);
+    margin-bottom: 1.2rem;
+    line-height: 1.25;
+  }
+
+  .section-label {
+    margin-bottom: 0.45rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1.35rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
 }

@@ -13,10 +13,16 @@ const links = [
 <header id="site-nav">
   <div class="container nav-inner">
     <a href="#home" class="nav-brand">Raza Saleemi</a>
-    <nav class="nav-links">
-      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <div class="nav-scroll">
+      <nav class="nav-links" aria-label="Primary">
+        {links.map((l) => (
+          <a href={l.href}>{l.label}</a>
+        ))}
+      </nav>
+    </div>
+    <div class="nav-actions">
       <ThemeToggle />
-    </nav>
+    </div>
   </div>
 </header>
 
@@ -37,12 +43,20 @@ const links = [
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 0.75rem;
     height: 64px;
   }
   .nav-brand {
     font-weight: 700;
     font-size: 1.05rem;
     letter-spacing: -0.01em;
+    flex-shrink: 0;
+  }
+  .nav-scroll {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: flex-end;
   }
   .nav-links {
     display: flex;
@@ -51,14 +65,40 @@ const links = [
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-muted);
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
   .nav-links a {
+    flex-shrink: 0;
     transition: color 0.2s;
   }
   .nav-links a:hover {
     color: var(--text);
   }
-  @media (max-width: 640px) {
-    .nav-links { gap: 0.8rem; font-size: 0.82rem; }
+  .nav-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .nav-inner {
+      min-height: 56px;
+      gap: 0.5rem;
+    }
+    .nav-scroll {
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 2px 0;
+    }
+    .nav-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-links {
+      gap: 0.65rem;
+      font-size: 0.78rem;
+      margin-inline: auto 0;
+    }
   }
 </style>

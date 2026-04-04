@@ -90,4 +90,19 @@ const { project } = Astro.props;
     margin-top: 0.25rem;
     margin-bottom: 0.1rem;
   }
+
+  @media (max-width: 768px) {
+    .project-card {
+      padding: 1.25rem;
+    }
+    .project-image-wrap {
+      height: auto;
+      min-height: 160px;
+      max-height: 220px;
+      padding: 1rem;
+    }
+    .project-summary {
+      line-height: 1.65;
+    }
+  }
 </style>
