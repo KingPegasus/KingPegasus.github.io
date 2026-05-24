@@ -4,6 +4,6 @@ summary: "End-to-end software platform for industrial energy monitoring and opti
 tags: ["Python", "Django", "Full-stack"]
 image: "/images/projects/ems.png"
 featured: true
-order: 5
+order: 6
 ---
 Architected and shipped an industrial energy management software platform, delivered on time and within budget.

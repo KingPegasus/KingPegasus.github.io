@@ -5,6 +5,6 @@ tags: ["Python", "C#", ".NET", "AWS", "Leadership"]
 url: "https://mtronic.pk"
 image: "/images/projects/mtronic-logo.svg"
 featured: true
-order: 4
+order: 5
 ---
 Drove software architecture, team execution, and product delivery from prototype through production.

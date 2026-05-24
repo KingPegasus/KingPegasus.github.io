@@ -5,6 +5,6 @@ tags: ["Django", "PostgreSQL", "E-commerce"]
 url: "https://baraq.pk"
 image: "/images/projects/baraq.png"
 featured: true
-order: 6
+order: 7
 ---
 Implemented core backend systems to support reliable e-commerce transactions and user operations.

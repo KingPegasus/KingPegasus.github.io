@@ -5,6 +5,6 @@ tags: ["Python", "FastAPI", "Machine Learning"]
 url: "https://rareos.com"
 image: "/images/projects/rareos.png"
 featured: true
-order: 3
+order: 4
 ---
 Developed and delivered an ML-based image processing application focused on accuracy and production reliability.

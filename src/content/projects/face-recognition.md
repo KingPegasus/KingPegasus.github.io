@@ -5,6 +5,6 @@ tags: ["CNN", "Computer Vision", "ML", "Technology Spirits"]
 image: "/images/projects/tspirits.png"
 url: "https://tspirits.com"
 featured: true
-order: 7
+order: 8
 ---
 Implemented using CNN developed at Technology Spirits.

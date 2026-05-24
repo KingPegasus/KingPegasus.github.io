@@ -4,3 +4,9 @@ dist
 .DS_Store
 *.log
 node_modules
+
+
+#Ignore cursor AI rules
+.cursor/rules/codacy.mdc
+.codacy/cli.sh
+.codacy/codacy.yaml
