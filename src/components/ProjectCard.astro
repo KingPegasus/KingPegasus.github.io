@@ -13,7 +13,7 @@ const { project } = Astro.props;
   <p class="project-summary">{project.data.summary}</p>
   {project.data.url && (
     <a href={project.data.url} target="_blank" rel="noreferrer" class="accent-link project-link">
-      Visit project &rarr;
+      Visit {project.data.title} &rarr;
     </a>
   )}
   <div class="project-tags">
