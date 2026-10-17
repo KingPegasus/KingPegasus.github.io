@@ -6,6 +6,7 @@ const links = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Credentials", href: "#credentials" },
   { label: "Contact", href: "#contact" },
 ];
 ---
@@ -13,15 +14,26 @@ const links = [
 <header id="site-nav">
   <div class="container nav-inner">
     <a href="#home" class="nav-brand">Raza Saleemi</a>
-    <div class="nav-scroll">
-      <nav class="nav-links" aria-label="Primary">
-        {links.map((l) => (
-          <a href={l.href}>{l.label}</a>
-        ))}
-      </nav>
-    </div>
+    <nav class="nav-links" id="nav-menu" aria-label="Primary">
+      {links.map((l) => (
+        <a href={l.href}>{l.label}</a>
+      ))}
+    </nav>
     <div class="nav-actions">
       <ThemeToggle />
+      <button
+        id="nav-toggle"
+        class="menu-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        aria-label="Open menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line class="bar bar-top" x1="4" y1="8" x2="20" y2="8" />
+          <line class="bar bar-bottom" x1="4" y1="16" x2="20" y2="16" />
+        </svg>
+      </button>
     </div>
   </div>
 </header>
@@ -32,12 +44,9 @@ const links = [
     top: 0;
     z-index: 50;
     backdrop-filter: blur(16px);
-    background: rgba(10, 10, 12, 0.8);
+    -webkit-backdrop-filter: blur(16px);
+    background: var(--nav-bg);
     border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
-  }
-  :global(body.light) #site-nav {
-    background: rgba(250, 250, 250, 0.85);
   }
   .nav-inner {
     display: flex;
@@ -51,54 +60,157 @@ const links = [
     font-size: 1.05rem;
     letter-spacing: -0.01em;
     flex-shrink: 0;
-  }
-  .nav-scroll {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    justify-content: flex-end;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
   .nav-links {
+    flex: 1;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     gap: 1.4rem;
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-muted);
-    flex-wrap: nowrap;
     white-space: nowrap;
   }
   .nav-links a {
-    flex-shrink: 0;
-    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    position: relative;
   }
-  .nav-links a:hover {
+  .nav-links a:hover,
+  .nav-links a[aria-current="true"] {
     color: var(--text);
+  }
+  .nav-links a[aria-current="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
   }
   .nav-actions {
     flex-shrink: 0;
     display: flex;
     align-items: center;
+    gap: 0.5rem;
   }
+  .menu-btn {
+    display: none;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .bar {
+    transition: transform 0.2s ease;
+    transform-origin: center;
+  }
+  .menu-btn[aria-expanded="true"] .bar-top {
+    transform: translateY(4px) rotate(45deg);
+  }
+  .menu-btn[aria-expanded="true"] .bar-bottom {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
   @media (max-width: 768px) {
     .nav-inner {
-      min-height: 56px;
+      height: 60px;
       gap: 0.5rem;
     }
-    .nav-scroll {
-      justify-content: flex-start;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 2px 0;
-    }
-    .nav-scroll::-webkit-scrollbar {
-      display: none;
+    .menu-btn {
+      display: grid;
     }
     .nav-links {
-      gap: 0.65rem;
-      font-size: 0.78rem;
-      margin-inline: auto 0;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    #site-nav.open .nav-links {
+      display: flex;
+    }
+    .nav-links a {
+      min-height: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
+    .nav-links a[aria-current="true"] {
+      color: var(--accent);
+    }
+    .nav-links a[aria-current="true"]::after {
+      display: none;
     }
   }
 </style>
+
+<script>
+  const header = document.getElementById("site-nav");
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-menu");
+  const navLinks = Array.from(menu?.querySelectorAll<HTMLAnchorElement>("a") ?? []);
+
+  const setOpen = (open: boolean) => {
+    header?.classList.toggle("open", open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+
+  toggle?.addEventListener("click", () => {
+    setOpen(toggle.getAttribute("aria-expanded") !== "true");
+  });
+  navLinks.forEach((a) => a.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && header?.classList.contains("open")) {
+      setOpen(false);
+      toggle?.focus();
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (header?.classList.contains("open") && !header.contains(e.target as Node)) setOpen(false);
+  });
+
+  // Mark the section currently in view.
+  const sections = navLinks
+    .map((a) => document.querySelector<HTMLElement>(a.getAttribute("href") ?? ""))
+    .filter((s): s is HTMLElement => !!s);
+
+  if ("IntersectionObserver" in window && sections.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = `#${entry.target.id}`;
+          navLinks.forEach((a) => {
+            if (a.getAttribute("href") === id) a.setAttribute("aria-current", "true");
+            else a.removeAttribute("aria-current");
+          });
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((s) => observer.observe(s));
+  }
+</script>

@@ -5,6 +5,10 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://razasaleemi.com",
   integrations: [sitemap()],
+  build: {
+    // Small stylesheet; inlining removes the render-blocking request.
+    inlineStylesheets: "always",
+  },
   vite: {
     plugins: [tailwindcss()],
   },

@@ -10,6 +10,8 @@ const projects = defineCollection({
     tags: z.array(z.string()),
     url: z.url().optional(),
     image: z.string().optional(),
+    // Tile behind the image: "dark" for light-coloured logos on transparent backgrounds.
+    imageTone: z.enum(["light", "dark"]).default("light"),
     featured: z.boolean().default(true),
     order: z.number().default(99),
   }),

@@ -1,19 +1,18 @@
 ---
-const { project } = Astro.props;
+const { project, extra = false } = Astro.props;
 ---
 
-<article class="glass project-card">
+<article class:list={["glass", "project-card", { "project-extra": extra }]}>
   {project.data.image && (
-    <div class="project-image-wrap">
-      <img src={project.data.image} alt={`${project.data.title} screenshot`} class="project-image" loading="lazy" />
+    <div class:list={["project-image-wrap", { "tone-dark": project.data.imageTone === "dark" }]}>
+      <img src={project.data.image} alt={`${project.data.title} screenshot`} class="project-image" loading="lazy" decoding="async" />
     </div>
   )}
-  <div class="project-number">{String(project.data.order).padStart(2, '0')}</div>
   <h3 class="project-title">{project.data.title}</h3>
   <p class="project-summary">{project.data.summary}</p>
   {project.data.url && (
     <a href={project.data.url} target="_blank" rel="noreferrer" class="accent-link project-link">
-      Visit {project.data.title} &rarr;
+      Visit {project.data.title} &rarr;<span class="sr-only"> (opens in new tab)</span>
     </a>
   )}
   <div class="project-tags">
@@ -30,37 +29,20 @@ const { project } = Astro.props;
     position: relative;
     overflow: hidden;
   }
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), #9333ea);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .project-card:hover::before {
-    opacity: 1;
-  }
-  .project-number {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--accent);
-    font-weight: 500;
-  }
   .project-image-wrap {
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 0.2rem;
     border: 1px solid var(--border);
-    background: var(--surface);
+    background: var(--tile);
     height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.75rem;
+  }
+  .project-image-wrap.tone-dark {
+    background: #111114;
   }
   .project-image {
     width: 100%;
@@ -96,9 +78,7 @@ const { project } = Astro.props;
       padding: 1.25rem;
     }
     .project-image-wrap {
-      height: auto;
-      min-height: 160px;
-      max-height: 220px;
+      height: 180px;
       padding: 1rem;
     }
     .project-summary {
