@@ -6,8 +6,8 @@ import { socials } from "../data/socials";
   <div class="container footer-inner">
     <p class="footer-copy">&copy; {new Date().getFullYear()} Muhammad Raza Khalid Saleemi</p>
     <div class="footer-links">
-      <a href={socials.github} target="_blank" rel="noreferrer">GitHub</a>
-      <a href={socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href={socials.github} target="_blank" rel="noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+      <a href={socials.linkedin} target="_blank" rel="noreferrer">LinkedIn<span class="sr-only"> (opens in new tab)</span></a>
     </div>
   </div>
 </footer>
@@ -26,14 +26,19 @@ import { socials } from "../data/socials";
     gap: 1rem;
   }
   .footer-copy {
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     color: var(--text-muted);
   }
   .footer-links {
     display: flex;
     gap: 1.2rem;
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     color: var(--text-muted);
+  }
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   @media (max-width: 480px) {

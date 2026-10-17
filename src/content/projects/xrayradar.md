@@ -4,6 +4,7 @@ summary: "Error-tracking platform that stays out of your way — low-noise monit
 tags: ["Error Tracking", "Observability", "SaaS", "Developer Tools"]
 url: "https://xrayradar.com"
 image: "/images/projects/xrayradar.svg"
+imageTone: "dark"
 featured: true
 order: 3
 ---

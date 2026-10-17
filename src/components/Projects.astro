@@ -5,6 +5,9 @@ import ProjectCard from "./ProjectCard.astro";
 const projects = (await getCollection("projects"))
   .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
+
+// On phones only the first few cards show until the visitor asks for more.
+const MOBILE_VISIBLE = 3;
 ---
 
 <section id="projects" class="section">
@@ -13,9 +16,14 @@ const projects = (await getCollection("projects"))
       <p class="section-label">Projects</p>
       <h2 class="section-title">Things I've built</h2>
     </div>
-    <div class="projects-grid fade-in">
-      {projects.map((project) => <ProjectCard project={project} />)}
+    <div class="projects-grid fade-in" id="projects-grid">
+      {projects.map((project, i) => <ProjectCard project={project} extra={i >= MOBILE_VISIBLE} />)}
     </div>
+    {projects.length > MOBILE_VISIBLE && (
+      <button id="projects-more" class="btn btn-outline projects-more" type="button" aria-controls="projects-grid" aria-expanded="false">
+        Show all {projects.length} projects
+      </button>
+    )}
   </div>
 </section>
 
@@ -25,10 +33,37 @@ const projects = (await getCollection("projects"))
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
   }
+  .projects-more {
+    display: none;
+  }
   @media (max-width: 768px) {
     .projects-grid {
       grid-template-columns: 1fr;
       gap: 1.25rem;
     }
+    :global(.js) .projects-grid:not(.expanded) :global(.project-extra) {
+      display: none;
+    }
+    :global(.js) .projects-more {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 1.25rem;
+    }
   }
 </style>
+
+<script>
+  const more = document.getElementById("projects-more");
+  const grid = document.getElementById("projects-grid");
+  more?.addEventListener("click", () => {
+    grid?.classList.add("expanded");
+    // Move focus to the first revealed card before the button goes away.
+    const first = grid?.querySelector<HTMLElement>(".project-extra");
+    if (first) {
+      first.tabIndex = -1;
+      first.focus();
+    }
+    more.remove();
+  });
+</script>

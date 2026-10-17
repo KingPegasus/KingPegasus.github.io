@@ -1,13 +1,14 @@
 ---
-import { socials } from "../data/socials";
+import { Picture } from "astro:assets";
+import headshot from "../assets/headshot.jpg";
 ---
 
 <section id="home" class="hero-bg hero-section">
-  <div class="container" style="position:relative;z-index:1;">
+  <div class="container hero-inner">
     <div class="hero-grid">
       <div class="hero-text">
         <p class="hero-location">Islamabad, Pakistan</p>
-        <h1 class="hero-name">Muhammad Raza Khalid<br />Saleemi</h1>
+        <h1 class="hero-name">Muhammad Raza Khalid Saleemi</h1>
         <p class="hero-role">Principal Engineer <span class="hero-at">@ Baraqi</span></p>
         <p class="hero-tagline">I build scalable backends, ML projects, and the teams behind them.</p>
         <div class="hero-chips">
@@ -19,14 +20,21 @@ import { socials } from "../data/socials";
           <a href="#projects" class="btn btn-primary">See My Work &darr;</a>
           <a href="#contact" class="btn btn-outline">Get in Touch</a>
         </div>
-        <div class="hero-socials">
-          <a href={socials.github} target="_blank" rel="noreferrer" class="accent-link">GitHub &rarr;</a>
-          <a href={socials.linkedin} target="_blank" rel="noreferrer" class="accent-link">LinkedIn &rarr;</a>
-        </div>
       </div>
       <div class="hero-photo-wrap">
         <div class="hero-photo-ring">
-          <img src="/images/hero/headshot.jpg" alt="Muhammad Raza Khalid Saleemi" class="hero-photo" loading="eager" />
+          <Picture
+            src={headshot}
+            alt="Muhammad Raza Khalid Saleemi"
+            class="hero-photo"
+            formats={["avif", "webp"]}
+            widths={[200, 300, 400, 600]}
+            sizes="(max-width: 768px) 200px, 300px"
+            width={300}
+            height={300}
+            loading="eager"
+            fetchpriority="high"
+          />
         </div>
       </div>
     </div>
@@ -37,6 +45,10 @@ import { socials } from "../data/socials";
   .hero-section {
     padding: 7rem 0 5.5rem;
   }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+  }
   .hero-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -44,7 +56,7 @@ import { socials } from "../data/socials";
     align-items: center;
   }
   .hero-location {
-    font-size: 0.88rem;
+    font-size: 0.875rem;
     color: var(--text-muted);
     margin-bottom: 0.5rem;
     letter-spacing: 0.04em;
@@ -55,6 +67,7 @@ import { socials } from "../data/socials";
     line-height: 1.08;
     letter-spacing: -0.03em;
     margin-bottom: 0.5rem;
+    text-wrap: balance;
   }
   .hero-role {
     font-size: 1.15rem;
@@ -82,12 +95,6 @@ import { socials } from "../data/socials";
     margin-top: 1.5rem;
     flex-wrap: wrap;
   }
-  .hero-socials {
-    display: flex;
-    gap: 1.2rem;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-  }
   .hero-photo-wrap {
     display: flex;
     justify-content: center;
@@ -97,8 +104,8 @@ import { socials } from "../data/socials";
     height: 300px;
     border-radius: 50%;
     padding: 4px;
-    background: linear-gradient(135deg, var(--accent), #9333ea, #06b6d4);
-    box-shadow: 0 0 60px var(--accent-glow);
+    border: 1px solid var(--border-hover);
+    background: var(--surface);
   }
   .hero-photo {
     width: 100%;
@@ -118,7 +125,7 @@ import { socials } from "../data/socials";
     }
     .hero-photo-wrap { order: -1; }
     .hero-photo-ring { width: 200px; height: 200px; }
-    .hero-chips, .hero-actions, .hero-socials { justify-content: center; }
+    .hero-chips, .hero-actions { justify-content: center; }
     .hero-tagline { margin: 0 auto; }
     .hero-name {
       font-size: clamp(1.65rem, 7vw, 2.4rem);
